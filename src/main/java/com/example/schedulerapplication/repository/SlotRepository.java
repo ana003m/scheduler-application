@@ -9,7 +9,6 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 
     List<Slot> findByBookedFalseOrderByDateAscStartTimeAsc();
 
-    // атомарно: успева само ако терминот сè уште не е резервиран
     @Modifying
     @Query("UPDATE Slot s SET s.booked = true, s.bookedByName = :name, s.bookedByEmail = :email " +
             "WHERE s.id = :id AND s.booked = false")
